@@ -6,7 +6,18 @@ using System.Threading.Tasks;
 
 namespace xUnitDemo.Classes
 {
-    internal class UserValidator
+    public class UserValidator
     {
+        public bool IsValidEmail(string email)
+        {
+            return !string.IsNullOrEmpty(email) && email.Contains("@") && email.Contains(".");
+        }
+
+        public bool IsAdult(DateTime birthDate)
+        {
+            var age = DateTime.Today.Year - birthDate.Year;
+            if (birthDate.Date > DateTime.Today.AddYears(-age)) age--;
+            return age >= 18;
+        }
     }
 }
